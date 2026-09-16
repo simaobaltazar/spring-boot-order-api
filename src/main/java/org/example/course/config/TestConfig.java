@@ -1,9 +1,6 @@
 package org.example.course.config;
 
-import org.example.course.entities.Category;
-import org.example.course.entities.Order;
-import org.example.course.entities.Product;
-import org.example.course.entities.User;
+import org.example.course.entities.*;
 import org.example.course.entities.enums.OrderStatus;
 import org.example.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +64,10 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 }
