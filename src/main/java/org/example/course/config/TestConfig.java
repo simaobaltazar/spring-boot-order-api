@@ -5,10 +5,7 @@ import org.example.course.entities.Order;
 import org.example.course.entities.Product;
 import org.example.course.entities.User;
 import org.example.course.entities.enums.OrderStatus;
-import org.example.course.repositories.CategoryRepository;
-import org.example.course.repositories.OrderRepository;
-import org.example.course.repositories.ProductRepository;
-import org.example.course.repositories.UserRepository;
+import org.example.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +30,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
