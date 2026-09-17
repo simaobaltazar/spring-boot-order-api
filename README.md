@@ -1,6 +1,6 @@
 # Spring Boot Order API
 
-[![Licença](https://img.shields.io/badge/License-MIT-blue.svg)]([https://opensource.org/licenses/MIT](https://github.com/simaobaltazar/spring-boot-order-api/blob/main/LICENSE))
+[![Licença](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/simaobaltazar/spring-boot-order-api/blob/main/LICENSE)
 
 ## Sobre o projeto
 
