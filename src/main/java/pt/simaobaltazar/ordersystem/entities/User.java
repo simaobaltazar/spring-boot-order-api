@@ -1,6 +1,7 @@
 package pt.simaobaltazar.ordersystem.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class User {
     private String name;
     private String email;
     private String phone;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @JsonIgnore
@@ -65,6 +68,8 @@ public class User {
         this.phone = phone;
     }
 
+
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
