@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import pt.simaobaltazar.ordersystem.entities.User;
 import pt.simaobaltazar.ordersystem.repositories.UserRepository;
 import pt.simaobaltazar.ordersystem.service.exceptions.DatabaseException;
+import pt.simaobaltazar.ordersystem.service.exceptions.InvalidRequestException;
 import pt.simaobaltazar.ordersystem.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,6 +30,9 @@ public class UserService {
     }
 
     public User insert(User obj) {
+        if (obj.getId() != null) {
+            throw new InvalidRequestException("The id must not be sent when creating a user");
+        }
         return repository.save(obj);
     }
 

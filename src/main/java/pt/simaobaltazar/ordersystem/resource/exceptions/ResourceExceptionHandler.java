@@ -2,6 +2,7 @@ package pt.simaobaltazar.ordersystem.resource.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
 import pt.simaobaltazar.ordersystem.service.exceptions.DatabaseException;
+import pt.simaobaltazar.ordersystem.service.exceptions.InvalidRequestException;
 import pt.simaobaltazar.ordersystem.service.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,14 @@ public class ResourceExceptionHandler {
     @ExceptionHandler(DatabaseException.class)
     public ResponseEntity<StandardError> database(DatabaseException e, HttpServletRequest request) {
         String error = "Database error";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(InvalidRequestException.class)
+    public ResponseEntity<StandardError> invalidRequest(InvalidRequestException e, HttpServletRequest request) {
+        String error = "Invalid request";
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
