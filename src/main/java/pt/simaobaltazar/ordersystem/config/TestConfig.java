@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.util.Arrays;
 
 @Configuration
-@Profile("test")
+@Profile({"test", "dev"})
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
@@ -33,6 +33,11 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //Not duplicate the data
+        if (userRepository.count() > 0) {
+            return;
+        }
 
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
